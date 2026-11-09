@@ -1,40 +1,32 @@
 # scope-aligned-naming
 
-Choose names whose semantic scope matches the actual responsibility of the thing being named.
+Choose the scope and name of each element together, so its full context expresses its actual responsibility with only the necessary hierarchy and naming detail.
 
-Apply this skill when creating, renaming, or reviewing:
+Apply this skill when creating, renaming, reorganizing, or reviewing files, directories, modules, namespaces, packages, crates, types, functions, and methods.
 
-- files
-- directories
-- modules
-- namespaces
-- packages and crates
-- types
-- functions and methods
+## Determine the responsibility
 
-## Core rule
+Identify what the element does in the present design before deciding where it belongs or what to call it.
+One named element should represent one clear responsibility; several operations may share an element when they serve that coherent purpose.
+Use the project's established responsibility boundaries.
+When an element spans independent responsibilities, resolve or expose that mismatch before choosing its scope and name.
 
-One named element should represent one clear responsibility.
+Base this decision on current contents and contracts.
+Anticipated reuse, hypothetical unrelated future content, and generic templates supply no additional responsibility.
 
-Choose a name whose meaning matches that responsibility neither more broadly nor more narrowly.
+## Determine the scope
 
-Treat the surrounding scope as part of the responsibility's name.
+Read the affected hierarchy from the repository root down to the element.
+Treat the repository and existing parent scopes as context already supplied to the reader.
+Choose each directory, module, or namespace level for the concrete distinction or responsibility boundary it adds within that context.
 
-Use only the detail needed to distinguish the responsibility within its parent scope.
+Omit or collapse a level that only repeats ownership established by its parent.
+A repository dedicated to one project already establishes that project's identity.
+Retain an additional project-name directory or namespace prefix only for a distinct current responsibility or a concrete build or public import requirement, and identify that reason.
+Evaluate filesystem and namespace hierarchies separately against their actual requirements.
 
-## Make each hierarchy level meaningful
-
-Treat the repository root and existing parent scopes as established context.
-For each level in the affected directory, module, or namespace hierarchy, identify the concrete distinction or responsibility boundary it adds within that context.
-Inspect the hierarchy from the repository root down to the changed element, including its upper levels.
-
-Omit or collapse levels that only repeat ownership already established by a parent scope.
-In a repository dedicated to one project, the repository already establishes that project's identity. Keep an additional project-name wrapper only when it serves a distinct current responsibility or a concrete build or public import requirement; identify that requirement.
-Choose layout from the project's actual contents and contracts. A generic template or hypothetical unrelated future content does not establish a need for another level.
-
-Check directory and namespace hierarchies separately: each needs its own reason for a repeated prefix.
-Use the same test before adding lower-level categories; create a category when it groups a coherent responsibility and makes the contents easier to locate.
-Apply this check to new layouts and the structure being revised, carrying out migrations within the task's authorized scope.
+Create a lower-level category when it groups a coherent responsibility and helps readers locate its contents.
+Choose the necessary scope before choosing its local name.
 
 For example, in a dedicated project repository without a wrapper requirement:
 
@@ -42,44 +34,25 @@ For example, in a dedicated project repository without a wrapper requirement:
 src/ProjectName/Topic/Result.ext  ->  src/Topic/Result.ext
 ```
 
-Here `src` distinguishes source files from other deliverables and `Topic` identifies their subject. The omitted project-name level only repeats the repository's identity.
+Here `src` distinguishes source files from other deliverables and `Topic` identifies their subject.
+The repository supplies the project identity, so the extra project-name level contributes no distinction.
 
-## Responsibility first
+## Choose the local name
 
-Understand the responsibility before choosing the name.
+Express the responsibility using only the detail needed to distinguish it within the selected parent scope.
+The parent context forms part of the name's meaning.
+Keep its semantic scope aligned with the responsibility, neither broader nor narrower.
 
-Treat several operations as one responsibility when they serve the same coherent purpose.
+Prefer established project terminology, then conventional domain terminology.
+Choose those terms directly and follow the project's naming form and language conventions.
+Use concrete responsibility names in place of generic names such as `utils`, `common`, `manager`, or `service` when those words hide the actual role.
 
-Follow the responsibility boundaries established by the project.
+## Apply the decision
 
-When an element contains multiple independent responsibilities, expose that mismatch instead of hiding it behind a broader name.
+For new elements, create the selected scope and name together.
+For existing elements, align the affected scope and name with their present responsibility within the task's authorized migration scope.
+Account for existing build and public import contracts when changing either.
+Revisit the same decision when the responsibility changes.
 
-## Express the responsibility
-
-Choose names that communicate the actual responsibility.
-
-Prefer concrete responsibility names over generic names such as `utils`, `common`, `manager`, or `service` when those words do not identify the responsibility by themselves.
-
-## Name the present design
-
-Name the responsibility that exists now.
-
-Keep names aligned with current behavior rather than anticipated reuse, future extensions, or hypothetical implementations.
-
-Adjust the name when the responsibility actually changes.
-
-## Follow project language
-
-Among names that accurately describe the responsibility, prefer terminology already established by the project.
-
-When no suitable project term exists, use conventional terminology from the relevant technical domain.
-
-Choose established terminology directly rather than presenting equivalent vocabulary choices.
-
-Follow the project's existing naming form and language conventions.
-
-## Completion check
-
-- Each affected hierarchy level adds an identifiable distinction within its parent context.
-- Repeated project names or namespace prefixes have a concrete current justification.
-- The result communicates present responsibilities with only the necessary hierarchy and naming detail.
+Before finalizing, read the resulting path or qualified name in its full context.
+Confirm that it identifies the intended responsibility and that each level and local name contributes a necessary distinction.
