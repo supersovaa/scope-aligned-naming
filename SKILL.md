@@ -1,58 +1,28 @@
 # scope-aligned-naming
 
-Choose the scope and name of each element together, so its full context expresses its actual responsibility with only the necessary hierarchy and naming detail.
+Choose scopes and names that express the actual responsibility of each element.
 
-Apply this skill when creating, renaming, reorganizing, or reviewing files, directories, modules, namespaces, packages, crates, types, functions, and methods.
+Apply when creating, renaming, reorganizing, or reviewing files, directories, modules, namespaces, packages, crates, types, functions, and methods.
 
-## Determine the responsibility
+## Responsibility
 
-Identify what the element does in the present design before deciding where it belongs or what to call it.
-One named element should represent one clear responsibility; several operations may share an element when they serve that coherent purpose.
-Use the project's established responsibility boundaries.
-When an element spans independent responsibilities, resolve or expose that mismatch before choosing its scope and name.
+Identify the responsibility before choosing its scope or name.
+One element represents one coherent responsibility; several operations may belong together when they serve that purpose.
+Use the project's responsibility boundaries and expose independent responsibilities concealed within one element.
 
-Base this decision on current contents and contracts.
-Anticipated reuse, hypothetical unrelated future content, and generic templates supply no additional responsibility.
+## Scope and name
 
-## Determine the scope
+Read the surrounding scope from the repository root to the element; that context already contributes to its meaning.
+Keep a directory, module, or namespace level only when it adds a concrete distinction within that context or satisfies an identified build or public import requirement.
+Choose the local name to convey the responsibility with only the detail needed within the selected scope, neither more broadly nor more narrowly.
 
-Read the affected hierarchy from the repository root down to the element.
-Treat the repository and existing parent scopes as context already supplied to the reader.
-Choose each directory, module, or namespace level for the concrete distinction or responsibility boundary it adds within that context.
+## Terminology
 
-Omit or collapse a level that only repeats ownership established by its parent.
-A repository dedicated to one project already establishes that project's identity.
-Retain an additional project-name directory or namespace prefix only for a distinct current responsibility or a concrete build or public import requirement, and identify that reason.
-Evaluate filesystem and namespace hierarchies separately against their actual requirements.
+Prefer established project terms, then conventional domain terms, and use them directly.
+Follow the project's naming form and language conventions.
+Use concrete responsibility names where generic labels such as `utils` or `manager` would hide the role.
 
-Create a lower-level category when it groups a coherent responsibility and helps readers locate its contents.
-Choose the necessary scope before choosing its local name.
+## Maintenance
 
-For example, in a dedicated project repository without a wrapper requirement:
-
-```text
-src/ProjectName/Topic/Result.ext  ->  src/Topic/Result.ext
-```
-
-Here `src` distinguishes source files from other deliverables and `Topic` identifies their subject.
-The repository supplies the project identity, so the extra project-name level contributes no distinction.
-
-## Choose the local name
-
-Express the responsibility using only the detail needed to distinguish it within the selected parent scope.
-The parent context forms part of the name's meaning.
-Keep its semantic scope aligned with the responsibility, neither broader nor narrower.
-
-Prefer established project terminology, then conventional domain terminology.
-Choose those terms directly and follow the project's naming form and language conventions.
-Use concrete responsibility names in place of generic names such as `utils`, `common`, `manager`, or `service` when those words hide the actual role.
-
-## Apply the decision
-
-For new elements, create the selected scope and name together.
-For existing elements, align the affected scope and name with their present responsibility within the task's authorized migration scope.
-Account for existing build and public import contracts when changing either.
-Revisit the same decision when the responsibility changes.
-
-Before finalizing, read the resulting path or qualified name in its full context.
-Confirm that it identifies the intended responsibility and that each level and local name contributes a necessary distinction.
+Base scope and naming decisions on present responsibilities and concrete requirements rather than anticipated reuse or hypothetical implementations.
+When responsibilities change, update the affected scopes and names within the task's authorized migration scope, accounting for existing build and public import contracts.
