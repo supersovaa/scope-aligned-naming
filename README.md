@@ -6,7 +6,7 @@ A lightweight skill for keeping names aligned with the actual responsibility of 
 
 The skill keeps the semantic scope of a name aligned with the responsibility actually represented by the named element.
 
-It favors concise names within their parent scope, avoids generic responsibility-hiding names, and names the design that exists now rather than anticipated future abstractions.
+It favors concise names within their parent scope, requires each directory and namespace level to add a concrete distinction, and names the design that exists now rather than anticipated future abstractions. The hierarchy check includes upper levels and the context already established by the repository root.
 
 ## Contents
 
