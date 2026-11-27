@@ -1,8 +1,11 @@
+---
+name: scope-aligned-naming
+description: Choose or review scopes and names for files, directories, and code elements according to their responsibilities and surrounding context.
+---
+
 # scope-aligned-naming
 
-Choose scopes and names that express the actual responsibility of each element.
-
-Apply when creating, renaming, reorganizing, or reviewing files, directories, modules, namespaces, packages, crates, types, functions, and methods.
+Apply this guidance when creating, renaming, reorganizing, or reviewing files, directories, modules, namespaces, packages, crates, types, functions, or methods. Choose each element’s scope and name together.
 
 ## Responsibility
 
